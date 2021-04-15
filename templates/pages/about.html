@@ -39,16 +39,16 @@
             commodi id libero eveniet harum perferendis laborum molestias quia.</p>
         </div>
         <div class="col-md-4">
+            {% if seller_of_month %}
           <div class="card">
-            <img class="card-img-top" src="assets/img/realtors/kyle.jpg" alt="Seller of the month">
+            <img class="card-img-top" src="{{ seller_of_month.photo.url }}" alt="Seller of the month">
             <div class="card-body">
               <h5 class="card-title">Seller Of The Month</h5>
-              <h6 class="text-secondary">Kyle Brown</h6>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt amet, illo itaque similique repellat.
-                content.
-              </p>
+              <h6 class="text-secondary">{{ seller_of_month.name}}</h6>
+              <p class="card-text">{{ seller_of_month.desc}}</p>
             </div>
           </div>
+            {% endif %}
         </div>
       </div>
     </div>
@@ -65,41 +65,23 @@
   <!-- Team -->
   <section id="team" class="py-5">
     <div class="container">
-      <h2 class="text-center">Our Team</h2>
+      <h2 class="text-center"><b>Our Team</b></h2>
       <div class="row text-center">
-        <div class="col-md-4">
-          <img src="assets/img/realtors/kyle.jpg" alt="" class="rounded-circle mb-3">
-          <h4>Vokti</h4>
-          <p class="text-success">
-            <i class="fas fa-award text-success mb-3"></i> Realtor</p>
-          <hr>
-          <p>
-            <i class="fas fa-phone"></i> (555)-555-5555</p>
-          <p>
-            <i class="fas fa-envelope-open"></i> kyle@djrealestate.co</p>
-        </div>
-
-        <div class="col-md-4">
-          <img src="assets/img/realtors/mark.jpg" alt="" class="rounded-circle mb-3">
-          <h4>Mark</h4>
-          <p class="text-success">Realtor</p>
-          <hr>
-          <p>
-            <i class="fas fa-phone"></i> (444)-444-4444</p>
-          <p>
-            <i class="fas fa-envelope-open"></i> mark@djrealestate.co</p>
-        </div>
-
-        <div class="col-md-4">
-          <img src="assets/img/realtors/jenny.jpg" alt="" class="rounded-circle mb-3">
-          <h4>Jenny Johnson</h4>
-          <p class="text-success">Realtor</p>
-          <hr>
-          <p>
-            <i class="fas fa-phone"></i> (333)-333-3333</p>
-          <p>
-            <i class="fas fa-envelope-open"></i> jenny@realestate.co</p>
-        </div>
+        {% for member in team %}
+            <div class="col-md-4">
+              <img src="{{ member.photo.url }}" alt="" class="rounded-circle mb-3" height="350px">
+              <h4>{{ member.name }}</h4>
+              <p class="text-success">
+                <i class="fas fa-award text-success mb-3"></i> Realtor</p>
+              <hr>
+              <p>
+                <i class="fas fa-phone"></i>{{ member.phone }}</p>
+              <p>
+                <i class="fas fa-envelope-open"></i>{{ member.email }}</p>
+            </div>
+          {% empty %}
+            <h3 class="text-center">No Team Member Available </h3>
+        {% endfor %}
       </div>
     </div>
   </section>
